@@ -1,12 +1,13 @@
-import { Count } from './class-components/Count';
-import { Form as FormClass } from './class-components/Form';
+import { useState } from 'react';
+import { Message } from './components/Message/Message';
 
 export const App = () => {
+
+  const message = 'Message from App component'
+
   return (
     <div className="App">
-      <Count count={10}/>
-      <hr />
-      <FormClass />
+      <Message message={message} />
     </div>
   );
 }
