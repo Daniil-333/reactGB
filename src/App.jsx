@@ -12,15 +12,16 @@ export const App = () => {
 
   return (
     <div className="App">
+      
       <h1>Messages</h1>
       <Form setMessageList={setMessageList} />
 
-
-      {messageList.map((item, idx) => {
-          return <div className="chat__messages" key={idx}>
-            <Message message={item}/>
-          </div>
+      <div className="chat__messages">
+        {messageList?.map((item, idx) => {
+          return <Message key={idx} message={item}/>
         })}
+      </div>
+
     </div>
   );
 }

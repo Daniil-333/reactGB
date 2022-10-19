@@ -11,15 +11,15 @@ export const Form = ({setMessageList}) => {
             'author': 'Автор',
             'text': value,
         }]))
+        setValue('')
     }
 
-    return <>
-            <form onSubmit={addMessage}>
+    return <form onSubmit={addMessage}>
                 <h1>Chat</h1>
                 <input type="text" name="msg" value={value} onChange={(e) => {
                     setValue(e.target.value);
                     }}/>
-                <button>Add msg</button>
+                <button type='submit'>Add msg</button>
             </form>
-        </>
+ 
 }
