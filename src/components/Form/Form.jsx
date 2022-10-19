@@ -1,19 +1,16 @@
 import { useState } from 'react';
 
-export const Form = ({handleMessageList}) => {
+export const Form = ({setMessageList}) => {
 
     const [value, setValue] = useState('');
 
     const addMessage = (ev) => {
         ev.preventDefault();
 
-        handleMessageList((prevState) => {
-            prevState.push({
-                'author': '',
-                'text': ev.target[0].value
-            })
-            console.log(ev);
-        })
+        setMessageList(prevState => ([...prevState, {
+            'author': 'Автор',
+            'text': value,
+        }]))
     }
 
     return <>

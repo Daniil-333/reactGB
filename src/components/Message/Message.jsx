@@ -2,7 +2,9 @@ import style from './Form.module.scss'
 
 export const Message = ({message}) => {
 
-    return <>
-        <p className={style.message}>{message.text}</p>
-    </>
+
+    return <div className={style.message}>
+        <p className={style.heading}>{message.author}</p>
+        <p className={style.messageTxt}>{message.text}</p>
+    </div>
 }
