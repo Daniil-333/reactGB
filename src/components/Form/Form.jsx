@@ -7,10 +7,14 @@ export const Form = ({setMessageList}) => {
     const addMessage = (ev) => {
         ev.preventDefault();
 
-        setMessageList(prevState => ([...prevState, {
-            'author': 'Автор',
-            'text': value,
-        }]))
+        setMessageList(prevState => {
+
+            return [...prevState, {
+                'id': ++prevState,
+                'author': 'Автор',
+                'text': value,
+            }]
+        })
         setValue('')
     }
 
