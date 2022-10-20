@@ -7,11 +7,6 @@ export const Form = ({setMessageList}) => {
     const [value, setValue] = useState('');
     const inputRef = useRef(null);
 
-    // useEffect(() => {
-    //     console.log(inputRef.current.firstChild);
-    //     inputRef.current?.focus();
-    // }, []);
-
     const addMessage = (ev) => {
         ev.preventDefault();
 
@@ -25,6 +20,9 @@ export const Form = ({setMessageList}) => {
                 }]
             })
             setValue('')
+            inputRef.current.classList.add('Mui-focused')
+            inputRef.current.click();
+            console.log();
         }else {
             console.log('Message is empty');
         }
@@ -36,7 +34,7 @@ export const Form = ({setMessageList}) => {
                 <OutlinedInput  
                     id="outlined-basic" 
                     className='chat__textarea'
-                    // ref={inputRef}
+                    ref={inputRef}
                     autoFocus
                     variant="filled" 
                     placeholder="Please enter message" 
