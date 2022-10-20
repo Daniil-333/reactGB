@@ -1,4 +1,54 @@
+@import './assets/reset';
+@import './assets/base';
+
+.App {
+    height: 100%;
+
+    &__header {
+        min-height: 40px;
+    }
+
+    &__title {
+        font-weight: 600;
+        font-size: 2rem;
+        text-align: center;
+    }
+}
+
 .chat {
+    height: calc(100% - 40px);
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    grid-template-rows: repeat(6, 1fr);
+    grid-template-areas: 'persons main'
+                        'persons main'
+                        'persons main'
+                        'persons main'
+                        'persons main'
+                        'persons form'
+                        ;
+
+    &__persons {
+        grid-area: persons;
+        border-right: 1px solid #cccccc;
+        padding: 15px;
+    }
+
+    &__main {
+        grid-area: main;
+    }
+
+    &__footer {
+        grid-area: form;
+    }
+
+    &__form {
+        display: flex;
+    } 
+
+    &__textarea {
+        flex: 1;
+    }
 
     &__messages {
         display: flex;

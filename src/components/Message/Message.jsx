@@ -1,4 +1,4 @@
-import style from './Form.module.scss'
+import style from './Message.module.scss'
 
 export const Message = ({message}) => {
 
