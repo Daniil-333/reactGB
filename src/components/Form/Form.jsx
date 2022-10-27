@@ -1,4 +1,5 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef } from 'react';
+import { useParams } from "react-router-dom";
 import Button from '@mui/material/Button';
 import OutlinedInput from '@mui/material/OutlinedInput';
 
@@ -6,15 +7,17 @@ export const Form = ({setMessageList}) => {
 
     const [value, setValue] = useState('');
     const inputRef = useRef(null);
+    const {chatID} = useParams()
 
     const addMessage = (ev) => {
         ev.preventDefault();
 
         if(value) {
             setMessageList(prevState => {
-
+console.log(prevState);
                 return [...prevState, {
                     'id': ++prevState.length,
+                    'chatID': chatID,
                     'author': 'Автор',
                     'text': value,
                 }]

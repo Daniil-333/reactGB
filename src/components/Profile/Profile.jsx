@@ -2,8 +2,8 @@
 export const Profile = () => {
 
     return (
-        <div>
-            <h1>Профиль</h1>
+        <div className="profilePage">
+            <h1 className="profilePage__title title">Профиль</h1>
         </div>
     );
 }
