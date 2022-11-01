@@ -14,7 +14,7 @@ export const Form = ({setMessageList}) => {
 
         if(value) {
             setMessageList(prevState => {
-console.log(prevState);
+
                 return [...prevState, {
                     'id': ++prevState.length,
                     'chatID': chatID,
@@ -25,7 +25,6 @@ console.log(prevState);
             setValue('')
             inputRef.current.classList.add('Mui-focused')
             inputRef.current.click();
-            console.log();
         }else {
             console.log('Message is empty');
         }

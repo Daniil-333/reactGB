@@ -8,17 +8,21 @@ export const Chats = () => {
     const isFirstRender = useRef(true);
     const [messageList, setMessageList] = useState([])
     const [userList, setUserList] = useState([
+      
       {
         'id': 'chat0',
         'name': 'Daniel',
+        'messages': messageList,
       },
       {
         'id': 'chat1',
         'name': 'Viktor',
+        'messages': messageList,
       }
     ])
     const {chatID} = useParams()
-    const id = userList.findIndex(chat => chat.id === chatID)
+    const activeUser = userList.some(chat => chat.id === chatID);
+    console.log(activeUser);
 
     useEffect(() => {
         if (!isFirstRender.current) {
@@ -54,7 +58,7 @@ export const Chats = () => {
               }
             </div>
             <div className='chat__footer'>
-            <Form setMessageList={setMessageList} />
+              <Form setMessageList={setMessageList} />
             </div>
         </div>
     );
