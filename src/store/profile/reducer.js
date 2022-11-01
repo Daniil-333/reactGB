@@ -1,3 +1,4 @@
+import {EXAMPLE_ACTION} from './actions';
 
 const initialState = {
     showName: false,
