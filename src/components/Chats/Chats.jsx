@@ -8,7 +8,7 @@ export const Chats = () => {
     const isFirstRender = useRef(true);
     const [messageList, setMessageList] = useState([])
     const [userList, setUserList] = useState([
-      
+
       {
         'id': 'chat0',
         'name': 'Daniel',
@@ -21,8 +21,6 @@ export const Chats = () => {
       }
     ])
     const {chatID} = useParams()
-    const activeUser = userList.some(chat => chat.id === chatID);
-    console.log(activeUser);
 
     useEffect(() => {
         if (!isFirstRender.current) {

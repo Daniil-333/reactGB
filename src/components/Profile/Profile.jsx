@@ -1,13 +1,17 @@
 import { useCallback } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { toggleShowName } from "../../store/profile/reducer";
 
 export const Profile = () => {
 
-    const { showName, name } = useSelector((state) => state);
+    const { showName, name } = useSelector((state) => state.profile);
     const dispatch = useDispatch();
+
     const setShowName = useCallback(() => {
-        dispatch(toggleShowName);
+        dispatch(toggleShowName());
     }, [dispatch]);
+
+    console.log(name);
 
     return (
         <div className="profilePage">

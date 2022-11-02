@@ -1,18 +1,28 @@
-import {EXAMPLE_ACTION} from './actions';
+import {createSlice} from '@reduxjs/toolkit';
 
-const initialState = {
-    showName: false,
-    name: 'Default'
-}
+export const profileSlice = createSlice({
+    name: 'profile',
 
-export const profileReducer = (state = initialState, action) => {
-    switch (action.type) {
-        case EXAMPLE_ACTION:
-        return {
-            ...state,
-            showName: !state.showName
+    initialState: {
+        showName: false,
+        name: 'Default'
+    },
+    reducers: {
+        toggleShowName: (state = this.initialState, action) => {
+            // switch (action.type) {
+            //     case EXAMPLE_ACTION:
+            //     return {
+            //         ...state,
+            //         showName: !state.showName
+            //     }
+            //     default:
+            //         return state
+            // }
+            state.showName = !state.showName
         }
-        default:
-            return state
     }
-}
+})
+
+export const { toggleShowName } = profileSlice.actions
+
+export default profileSlice.reducer
