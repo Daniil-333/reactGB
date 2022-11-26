@@ -9,15 +9,6 @@ export const profileSlice = createSlice({
     },
     reducers: {
         toggleShowName: (state = this.initialState, action) => {
-            // switch (action.type) {
-            //     case EXAMPLE_ACTION:
-            //     return {
-            //         ...state,
-            //         showName: !state.showName
-            //     }
-            //     default:
-            //         return state
-            // }
             state.showName = !state.showName
         }
     }

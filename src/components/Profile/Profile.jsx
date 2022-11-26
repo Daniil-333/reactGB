@@ -1,6 +1,6 @@
 import { useCallback } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { toggleShowName } from "../../store/profile/reducer";
+import { toggleShowName } from "../../slices/profile";
 
 export const Profile = () => {
 
@@ -10,8 +10,6 @@ export const Profile = () => {
     const setShowName = useCallback(() => {
         dispatch(toggleShowName());
     }, [dispatch]);
-
-    console.log(name);
 
     return (
         <div className="profilePage">

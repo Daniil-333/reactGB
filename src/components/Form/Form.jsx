@@ -1,27 +1,22 @@
 import { useState, useRef } from 'react';
 import { useParams } from "react-router-dom";
+import { useDispatch } from 'react-redux';
+import { addMessage } from "../../slices/chats";
 import Button from '@mui/material/Button';
 import OutlinedInput from '@mui/material/OutlinedInput';
 
-export const Form = ({setMessageList}) => {
+export const Form = () => {
 
     const [value, setValue] = useState('');
     const inputRef = useRef(null);
     const {chatID} = useParams()
+    const dispatch = useDispatch();
 
-    const addMessage = (ev) => {
-        ev.preventDefault();
+    const addMsg = (e) => {
+        e.preventDefault();
 
         if(value) {
-            setMessageList(prevState => {
-
-                return [...prevState, {
-                    'id': ++prevState.length,
-                    'chatID': chatID,
-                    'author': 'Автор',
-                    'text': value,
-                }]
-            })
+            dispatch(addMessage({id:chatID,data:value}));
             setValue('')
             inputRef.current.classList.add('Mui-focused')
             inputRef.current.click();
@@ -31,7 +26,7 @@ export const Form = ({setMessageList}) => {
 
     }
 
-    return <form onSubmit={addMessage} className="chat__form">
+    return <form onSubmit={addMsg} className="chat__form">
 
                 <OutlinedInput  
                     id="outlined-basic" 

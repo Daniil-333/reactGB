@@ -1,26 +1,29 @@
 import { useEffect, useRef, useState } from 'react';
-import { Link, useParams } from "react-router-dom";
+import { Link, Navigate, useParams } from "react-router-dom";
 import { Form } from '../Form/Form';
-import { Message } from '../Message/Message';
-import {List, ListItem} from '@mui/material';
+import { Chat } from '../Chat/Chat';
+import {List, ListItem, Button} from '@mui/material';
+import { useSelector, useDispatch } from 'react-redux';
+import { addChat, removeChat } from '../../slices/chats';
 
 export const Chats = () => {
     const isFirstRender = useRef(true);
-    const [messageList, setMessageList] = useState([])
-    const [userList, setUserList] = useState([
+    const [messageList] = useState([])
 
-      {
-        'id': 'chat0',
-        'name': 'Daniel',
-        'messages': messageList,
-      },
-      {
-        'id': 'chat1',
-        'name': 'Viktor',
-        'messages': messageList,
-      }
-    ])
+    const chats = useSelector(state => state.chats);
+    const dispatch = useDispatch();
+
     const {chatID} = useParams()
+
+    const newChat = {
+      'id': parseInt(chats.length),
+      'name': 'New Person',
+      'messages': [],
+    }
+
+    // if(!chats.find(item => item.id == chatID)) {
+    //   return <Navigate to="*" />;
+    // }
 
     useEffect(() => {
         if (!isFirstRender.current) {
@@ -35,28 +38,41 @@ export const Chats = () => {
     return (
         <div className='chat'>
             <div className='chat__persons'>
-            <List >
-                {userList?.map((user, id) => {
-                return <Link to={`chat${id}`} key={user['id']}>
-                        <ListItem>{user.name}</ListItem>
-                      </Link>
-                })}
-            </List>
+              <List >
+                  {chats?.map((user, id) => {
+                  return <Link to={`chat${id}`} key={user['id']}>
+                          <ListItem>{user.name}</ListItem>
+                        </Link>
+                  })}
+              </List>
+              <Button 
+                variant="contained" 
+                onClick={() => {
+                  dispatch(addChat(newChat))
+                }}
+              >Добавить чат</Button>
+              <Button 
+                variant="contained"
+                onClick={() => {
+                  dispatch(removeChat())
+                }}
+              >Удалить чат</Button>
             </div>
             <div className='chat__main'>
-              {(messageList.length > 0) ?
-                  <div className="chat__messages">
-                    {messageList?.map((item) => {
-                      if(item.chatID === chatID) {
-                        return <Message key={item['id']} message={item}/>
-                      }
-                    })}
-                  </div> :
-                  <p>Нет сообщений</p>
-              }
+              {!chatID ? <p>Выберите чат</p> :
+                (chats.length > 0) ?
+                    <div className="chat__messages">
+                      {chats?.map((item) => {
+                        if(item.id === chatID) {
+                          return <Chat key={item['id']} chat={item}/>
+                        }
+                      })}
+                    </div> :
+                    <p>Нет сообщений</p>
+                }
             </div>
             <div className='chat__footer'>
-              <Form setMessageList={setMessageList} />
+              <Form />
             </div>
         </div>
     );

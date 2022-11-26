@@ -1,10 +1,9 @@
 import style from './Message.module.scss'
 
-export const Message = ({message}) => {
+export const Message = ({text}) => {
 
-
-    return <div className={style.message} id={message.id}>
-                <p className={style.heading}>{message.author}</p>
-                <p className={style.messageTxt}>{message.text}</p>
+    return <div className={style.message}>
+                <p className={style.heading}></p>
+               <p className={style.messageTxt}>{text}</p>
             </div>
 }
